@@ -1,0 +1,49 @@
+<div class="columns is-centered">
+  <div class="column is-6">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">New Destination</p>
+      </header>
+      <section class="card-content">
+        <form [formGroup]="destinationForm" method="post" (ngSubmit)="onSubmit()">
+          <div class="columns is-multiline">
+            <div class="column is-full">
+              <div class="field">
+                <input class="input" type="text" placeholder="Name" formControlName="name">
+                <small class="has-text-danger" *ngIf="destinationForm.get('name').hasError('required') && destinationForm.get('name').dirty">
+                  Name is required
+                </small>
+              </div>
+            </div>
+            <div class="column is-full">
+              <div class="field">
+                <textarea class="textarea" type="text" placeholder="Description" formControlName="description"></textarea>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="field">
+                <input class="input" type="text" placeholder="Price" formControlName="price">
+              </div>
+            </div>
+            <div class="column is-full">
+              <label for="image" class="label has-text-grey">Destination Image</label>
+              <div class="select">
+                <select name="image" id="image" formControlName="image">
+                  <option *ngFor="let image of destinationService.destinationImages" [ngValue]="image.path">Image {{
+                    image.imageNum }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="column is-full" *ngIf="destinationForm.value.image">
+              <img [src]="destinationForm.value.image" alt="preview-image">
+            </div>
+          </div>
+          <button class="button is-primary" type="submit" [ngClass]="{'is-loading': loginLoading}">
+            Submit
+          </button>
+        </form>
+      </section>
+    </div>
+
+  </div>
+</div>

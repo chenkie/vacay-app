@@ -1,0 +1,10 @@
+@import '../../variables';
+
+aside {
+  background-color: #fff;
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  @include light-shadow;
+  z-index: 100;
+}

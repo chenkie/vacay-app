@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-2by1">
+      <img [src]="planet.image" alt="{{ planet.name }}">
+    </figure>
+  </div>
+  <header class="card-header">
+    <p class="card-header-title">{{ planet.name }}</p>
+  </header>
+  <section class="card-content">
+    <p>{{ truncate(planet.description) }}</p>
+  </section>
+</div>

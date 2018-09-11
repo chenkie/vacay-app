@@ -1,0 +1,17 @@
+@import '../../variables';
+
+nav {
+  background: -webkit-linear-gradient(left, #ffc600 0%, #fd6e6a 100%);
+  margin-bottom: 20px;
+  @include light-shadow;
+}
+
+.navbar-brand img {
+  max-height: 4rem;
+}
+
+.navbar-brand p {
+  font-family: 'Delius Unicase', cursive;
+  font-size: 28px;
+  margin-left: 10px;
+}

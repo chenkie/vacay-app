@@ -1,0 +1,48 @@
+<form [formGroup]="signupForm" method="post" (ngSubmit)="onSubmit()">
+  <div class="columns" *ngIf="signupResult">
+    <div class="column">
+      <app-form-message [messageType]="signupResult.state" [message]="signupResult.message"></app-form-message>
+    </div>
+  </div>
+  <div class="columns is-multiline">
+    <div class="column is-full">
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="email" placeholder="Email" formControlName="email">
+          <span class="icon is-small is-left">
+            <i class="fa" [ngClass]="{'fa-spin fa-circle-o-notch': emailValidating, 'fa-envelope': !emailValidating}"></i>
+          </span>
+        </p>
+        <small class="has-text-danger" *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').dirty">Email is required</small>
+        <small class="has-text-danger" *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').dirty">Must be a valid email address</small>
+        <small class="has-text-danger" *ngIf="signupForm.get('email').errors && signupForm.get('email').errors.emailTaken && signupForm.get('email').dirty">Drats! That email is taken.</small>
+      </div>
+    </div>
+    <div class="column is-full">
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Username" formControlName="username">
+          <span class="icon is-small is-left">
+            <i class="fa fa-user"></i>
+          </span>
+        </p>
+        <small class="has-text-danger" *ngIf="signupForm.get('username').hasError('required') && signupForm.get('username').dirty">Username is required</small>
+        <small class="has-text-danger" *ngIf="signupForm.get('username').errors && signupForm.get('username').errors.usernameTaken && signupForm.get('username').dirty">Dang! That username is taken.</small>
+      </div>
+    </div>
+    <div class="column is-full">
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" type="password" placeholder="Password" formControlName="password">
+          <span class="icon is-small is-left">
+            <i class="fa fa-lock"></i>
+          </span>
+        </p>
+        <small class="has-text-danger" *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').dirty">Password is required</small>
+      </div>
+    </div>
+  </div>
+  <button class="button is-info" type="submit" [ngClass]="{'is-loading': signupLoading}">
+    Sign Up
+  </button>
+</form>

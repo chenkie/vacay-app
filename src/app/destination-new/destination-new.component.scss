@@ -1,0 +1,25 @@
+@import '../../variables';
+
+.card {
+  @include sm-light-shadow;
+}
+input,
+textarea {
+  border: none;
+  background-color: none;
+  outline: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #dbdbdb;
+  border-radius: 0;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: normal;
+}

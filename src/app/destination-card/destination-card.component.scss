@@ -1,0 +1,9 @@
+@import '../../variables';
+
+.card {
+  @include sm-light-shadow;
+}
+
+img {
+  object-fit: cover;
+}

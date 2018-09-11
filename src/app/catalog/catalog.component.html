@@ -1,0 +1,3 @@
+<div class="columns is-multiline">
+  <app-destination-card class="column is-3" *ngFor="let planet of destinations" [planet]="planet" (click)="goToDestination(planet._id)"></app-destination-card>
+</div>
