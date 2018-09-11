@@ -62,7 +62,7 @@ export class AuthService {
   public setUser(token: string, userInfo: any, expiresAt: number): void {
     // using local storage is only required
     // when not using cookies to store the JWT
-    // this.setToken(token);
+    this.setToken(token);
     this.setUserInfo(userInfo);
     this.setExpiresAt(expiresAt);
   }

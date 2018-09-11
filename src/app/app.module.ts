@@ -58,14 +58,15 @@ export function tokenGetter() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // angular-jwt isn't needed when storing
-    // the JWT in a cookie
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter,
-    //     whitelistedDomains: ['localhost:3000']
-    //   }
-    // }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        whitelistedDomains: [
+          'localhost:3000',
+          'https://vacay-api.herokuapp.com/'
+        ]
+      }
+    }),
     HttpClientXsrfModule.withOptions({
       cookieName: 'csrf-token',
       headerName: 'csrf-token'
@@ -75,11 +76,11 @@ export function tokenGetter() {
     DestinationService,
     AuthGuardService,
     RoleGuardService,
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptor,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     UserService
   ],
   bootstrap: [AppComponent]
