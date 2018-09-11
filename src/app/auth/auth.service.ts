@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewUser } from './../user/user.model';
 import { Credentials } from './../user/credentials.model';
+import { API_URL } from './../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class AuthService {
     // We're using the spread syntax to get the
     // individual properties off the supplied user
     // object onto a new object
-    return this.http.post(`/api/authenticate`, { ...credentials });
+    return this.http.post(`${API_URL}/authenticate`, { ...credentials });
   }
 
   private setToken(token: string): void {
@@ -70,11 +71,11 @@ export class AuthService {
     // We're using the spread syntax to get the
     // individual properties off the supplied user
     // object onto a new object
-    return this.http.post(`/api/users`, { ...user });
+    return this.http.post(`${API_URL}/users`, { ...user });
   }
 
   // public logout(): Observable<any> {
-  //   return this.http.post('/api/logout', {});
+  //   return this.http.post('${API_URL}/logout', {});
   // }
 
   public logout(): void {

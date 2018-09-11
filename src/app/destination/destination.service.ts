@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Destination } from './destination.model';
+import { API_URL } from './../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -63,18 +64,18 @@ export class DestinationService {
   constructor(public http: HttpClient, public authService: AuthService) {}
 
   public getDestinations(): Observable<any> {
-    return this.http.get('/api/destinations');
+    return this.http.get(`${API_URL}/destinations`);
   }
 
   public getDestination(id: string): Observable<any> {
-    return this.http.get(`/api/destinations/${id}`);
+    return this.http.get(`${API_URL}/destinations/${id}`);
   }
 
   public postDestination(destination: Destination): Observable<any> {
-    return this.http.post('/api/destinations', { data: destination });
+    return this.http.post(`${API_URL}/destinations`, { data: destination });
   }
 
   public deleteDestination(id: string): Observable<any> {
-    return this.http.delete(`/api/destinations/${id}`);
+    return this.http.delete(`${API_URL}/destinations/${id}`);
   }
 }
