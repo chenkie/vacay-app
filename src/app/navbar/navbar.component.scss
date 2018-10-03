@@ -11,7 +11,9 @@ nav {
 }
 
 .navbar-brand p {
+  position: relative;
   font-family: 'Delius Unicase', cursive;
   font-size: 28px;
   margin-left: 10px;
+  left: -10px;
 }

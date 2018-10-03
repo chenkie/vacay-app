@@ -23,6 +23,7 @@ import { LoginFormSimpleComponent } from './login-form-simple/login-form-simple.
 import { FormMessageComponent } from './form-message/form-message.component';
 import { DestinationComponent } from './destination/destination.component';
 import { DestinationNewComponent } from './destination-new/destination-new.component';
+import { OktaCallbackComponent } from './okta-callback/okta-callback.component';
 
 import { DestinationService } from './destination/destination.service';
 import { AuthGuardService } from './auth/auth-guard.service';
@@ -32,9 +33,18 @@ import { UserService } from './user/user.service';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
+import { OktaAuthModule } from '@okta/okta-angular';
+
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+
+const authConfig = {
+  issuer: 'https://dev-769029.oktapreview.com/oauth2/default',
+  redirectUri: 'http://localhost:4200/implicit/callback',
+  clientId: '0oagaubr4hLl1Ei5g0h7',
+  scope: 'openid profile email'
+};
 
 @NgModule({
   declarations: [
@@ -50,7 +60,8 @@ export function tokenGetter() {
     LoginFormSimpleComponent,
     FormMessageComponent,
     DestinationComponent,
-    DestinationNewComponent
+    DestinationNewComponent,
+    OktaCallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +81,8 @@ export function tokenGetter() {
     HttpClientXsrfModule.withOptions({
       cookieName: 'csrf-token',
       headerName: 'csrf-token'
-    })
+    }),
+    OktaAuthModule.initAuth(authConfig)
   ],
   providers: [
     DestinationService,
